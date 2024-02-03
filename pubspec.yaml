@@ -42,6 +42,7 @@ dependencies:
   google_fonts: ^6.1.0
   page_view_dot_indicator: ^2.3.0
   dots_indicator: ^2.0.0
+  iconsax: ^0.0.8
   
   
 

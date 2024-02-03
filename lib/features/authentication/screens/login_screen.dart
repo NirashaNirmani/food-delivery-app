@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodyapp/features/authentication/screens/home_screen.dart';
+import 'package:foodyapp/features/authentication/screens/navigation_manu.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -210,6 +211,11 @@ class LoginScreen extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {
                                 // Login logic here
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NavigationMenu()),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -231,14 +237,7 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 Text("Don’t have an account?"),
                                 TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => HomeScreen()),
-                                      );
-                                    },
-                                    child: Text("Register"))
+                                    onPressed: () {}, child: Text("Register"))
                               ],
                             )
                           ],

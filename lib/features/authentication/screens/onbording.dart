@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:foodyapp/features/authentication/screens/login_screen.dart'; // Import the dots indicator package
+import 'package:foodyapp/features/authentication/screens/login_screen.dart';
+import 'package:foodyapp/features/authentication/screens/navigation_manu.dart'; // Import the dots indicator package
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
