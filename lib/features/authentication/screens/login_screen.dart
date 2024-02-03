@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodyapp/features/authentication/screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -12,11 +13,14 @@ class LoginScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.25,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 255, 254, 251),
+            Positioned(
+              top: 0,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.25,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 237, 236, 241),
+                ),
               ),
             ),
             Positioned(
@@ -75,24 +79,176 @@ class LoginScreen extends StatelessWidget {
             ),
             Positioned(
               bottom: 0,
+              left: 0,
+              right: 0,
               child: Container(
-                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.75,
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: Color.fromARGB(255, 237, 236, 241),
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(70)),
                 ),
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Image.asset("assets/images/login/face.png")],
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                              ),
+                              padding: const EdgeInsets.all(5),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 237, 236, 241),
+                            ),
+                            child: Image.asset(
+                              "assets/images/login/face.png",
+                              width: 50,
+                              height: 50,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                              ),
+                              padding: const EdgeInsets.all(5),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 243, 242, 242),
+                            ),
+                            child: Image.asset(
+                              "assets/images/login/google.png",
+                              width: 50,
+                              height: 50,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "or Login with Email",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      // Login Form
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const Text(
+                              "Email",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                fillColor:
+                                    const Color.fromARGB(255, 255, 255, 255),
+                                filled: true,
+                                //border: InputBorder.none, // Remove border line
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      15), // Set border radius here
+                                  borderSide:
+                                      BorderSide.none, // Remove the border line
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            const Text(
+                              "Password",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                fillColor:
+                                    const Color.fromARGB(255, 255, 255, 255),
+                                filled: true,
+                                labelText: 'Password',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide:
+                                      BorderSide.none, // Remove the border line
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const SizedBox(height: 20),
+                            ElevatedButton(
+                              onPressed: () {
+                                // Login logic here
+                              },
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                backgroundColor:
+                                    Color.fromARGB(255, 255, 210, 0),
+
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 25,
+                                    horizontal: 50), // Set height and width
+                              ),
+                              child: const Text('Login'),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Don’t have an account?"),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomeScreen()),
+                                      );
+                                    },
+                                    child: Text("Register"))
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
