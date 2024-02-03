@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dots_indicator/dots_indicator.dart'; // Import the dots indicator package
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:foodyapp/features/authentication/screens/login_screen.dart'; // Import the dots indicator package
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -68,6 +69,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   } else {
                     // Navigate to the next screen or perform the necessary action
                     // when the user finishes the onboarding.
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
                   }
                 },
                 style: ElevatedButton.styleFrom(
