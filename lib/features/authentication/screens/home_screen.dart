@@ -4,44 +4,25 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 237, 236, 241),
-      body: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.25,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 210, 0),
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(70)),
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.25,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 255, 210, 0),
+                borderRadius:
+                    BorderRadius.only(bottomRight: Radius.circular(70)),
               ),
-              Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 255, 210, 0),
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 237, 236, 241),
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(70)),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Positioned(
-            top: 80,
-            left: 0,
-            right: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(50.0),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(40.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -59,10 +40,10 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(Icons.search),
                           SizedBox(width: 10),
                           Expanded(
@@ -79,18 +60,18 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 60),
-                  Row(
+                  const Row(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         width: 30,
                         height: 30,
                         child: Icon(Icons.location_on,
                             size: 35), // Adjust size here
                       ),
-                      const SizedBox(width: 20),
+                      SizedBox(width: 20),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             'Home',
                             style: TextStyle(
@@ -103,9 +84,9 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(width: 60),
+                      SizedBox(width: 60),
                       Column(
-                        children: const [
+                        children: [
                           Icon(Icons.menu_open_outlined),
                         ],
                       ),
@@ -122,11 +103,50 @@ class HomeScreen extends StatelessWidget {
                           Icons.radio_button_checked_outlined, 'Asian'),
                     ],
                   ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Nearest Restaurents",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(height: 10),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        _buildElevatedButton('Container 1',
+                            'assets/images/home/noodless.jpg', 'Westway'),
+                        const SizedBox(width: 12),
+                        _buildElevatedButton('Container 2',
+                            'assets/images/home/noodless.jpg', 'Fortune'),
+                        const SizedBox(width: 12),
+                        _buildElevatedButton('Container 3',
+                            'assets/images/home/noodless.jpg', 'Seafood'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        _buildElevatedButton('Container 1',
+                            'assets/images/home/noodless.jpg', 'Westway'),
+                        const SizedBox(width: 12),
+                        _buildElevatedButton('Container 2',
+                            'assets/images/home/noodless.jpg', 'Fortune'),
+                        const SizedBox(width: 12),
+                        _buildElevatedButton('Container 3',
+                            'assets/images/home/noodless.jpg', 'Seafood'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -153,6 +173,52 @@ class HomeScreen extends StatelessWidget {
             style: const TextStyle(fontSize: 12),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildElevatedButton(
+    String label,
+    String imagePath,
+    String text1,
+  ) {
+    return ElevatedButton(
+      onPressed: () {
+        // Handle button tap
+      },
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        elevation: 4,
+        primary: const Color.fromARGB(255, 208, 214, 219),
+      ),
+      child: Container(
+        width: 130,
+        height: 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                imagePath,
+                height: 120,
+                width: 130,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 2.0),
+              child: Text(
+                text1,
+                style: const TextStyle(fontSize: 22, color: Colors.black),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

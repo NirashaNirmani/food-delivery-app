@@ -43,6 +43,8 @@ dependencies:
   page_view_dot_indicator: ^2.3.0
   dots_indicator: ^2.0.0
   iconsax: ^0.0.8
+  flutter_rating_bar: ^4.0.1
+  
   
   
 
@@ -77,6 +79,7 @@ flutter:
   assets:
     - assets/images/onboarding_images/
     - assets/images/login/
+    - assets/images/home/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
