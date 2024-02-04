@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodyapp/features/authentication/screens/home_screen.dart';
+import 'package:foodyapp/features/authentication/screens/restaurent_deails.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -14,24 +15,28 @@ class NavigationMenu extends StatelessWidget {
         bottomNavigationBar: Obx(() => NavigationBar(
                 height: 60,
                 elevation: 0,
-                backgroundColor: const Color.fromARGB(244, 7, 10, 31),
+                backgroundColor: Color.fromARGB(244, 255, 255, 255),
                 indicatorColor: Colors.white.withOpacity(0),
                 selectedIndex: controller.selectedIndex.value,
                 onDestinationSelected: (index) =>
                     controller.selectedIndex.value = index,
                 destinations: const [
                   NavigationDestination(
-                    icon: Icon(Iconsax.home, color: Colors.white),
+                    icon: Icon(Iconsax.home,
+                        color: Color.fromARGB(255, 163, 163, 163)),
                     label: " ",
                   ),
                   NavigationDestination(
-                      icon: Icon(Iconsax.shopping_cart, color: Colors.white),
+                      icon: Icon(Iconsax.search_favorite,
+                          color: Color.fromARGB(255, 163, 163, 163)),
                       label: " "),
                   NavigationDestination(
-                      icon: Icon(Iconsax.document, color: Colors.white),
+                      icon: Icon(Iconsax.bag5,
+                          color: Color.fromARGB(255, 163, 163, 163)),
                       label: " "),
                   NavigationDestination(
-                      icon: Icon(Iconsax.user, color: Colors.white),
+                      icon: Icon(Iconsax.user,
+                          color: Color.fromARGB(255, 163, 163, 163)),
                       label: " "),
                 ])),
         body: Obx(
@@ -45,7 +50,7 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    //const CartPage(),
+    const RestaurentDetalis(),
     //const ShopDetails(),
     //const Details(),
   ];
