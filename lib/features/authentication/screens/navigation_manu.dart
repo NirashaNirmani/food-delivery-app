@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodyapp/features/authentication/screens/home_screen.dart';
 import 'package:foodyapp/features/authentication/screens/restaurent_deails.dart';
+import 'package:foodyapp/features/authentication/screens/restaurent_menu.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -50,8 +51,8 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    const RestaurentDetalis(),
-    //const ShopDetails(),
+    RestaurentDetails(),
+    RestaurentMenu(),
     //const Details(),
   ];
 }

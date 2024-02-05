@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 
-class RestaurentDetalis extends StatelessWidget {
-  const RestaurentDetalis({Key? key}) : super(key: key);
+class Product {
+  final String name;
+  final double price;
+  final String imagePath; // New property for image path
 
+  Product({required this.name, required this.price, required this.imagePath});
+}
+
+class RestaurentDetails extends StatelessWidget {
+  RestaurentDetails({Key? key}) : super(key: key);
+  final products = <Product>[
+    Product(
+        name: 'Burger with some',
+        price: 10.0,
+        imagePath: 'assets/images/home/noodless.jpg'),
+    Product(
+        name: 'Vegitable Salad',
+        price: 20.0,
+        imagePath: 'assets/images/home/noodless.jpg'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: const Color.fromARGB(255, 237, 236, 241),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -16,9 +32,12 @@ class RestaurentDetalis extends StatelessWidget {
                 color: Color.fromARGB(255, 237, 236, 241),
               ),
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.25,
+                height: MediaQuery.of(context).size.height * 0.3,
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 210, 0),
+                  color: Color.fromARGB(255, 190, 174, 98),
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/home/noodless.jpg"),
+                      fit: BoxFit.cover),
                   borderRadius:
                       BorderRadius.only(bottomRight: Radius.circular(70)),
                 ),
@@ -26,42 +45,179 @@ class RestaurentDetalis extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 50),
-                      child: Container(
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color.fromARGB(255, 250, 240, 240)
-                                  .withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: IconButton(
+                            icon: const Icon(Icons.arrow_back),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
                         ),
-                      ),
+                        const Spacer(),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: IconButton(
+                            icon: const Icon(Icons.favorite),
+                            onPressed: () {
+                              // Add favorite logic
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: IconButton(
+                            icon: const Icon(Icons.screen_share),
+                            onPressed: () {
+                              // Add share logic
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                    //const SizedBox(height: 80),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 50),
+                    ),
                   ],
                 ),
               ),
             ),
             Container(
+              height: MediaQuery.of(context).size.height * 0.7,
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 255, 210, 0),
+                color: Color.fromARGB(255, 128, 128, 128),
               ),
               child: Container(
                 decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 237, 236, 241),
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(70))),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 30, right: 30, left: 30, bottom: 10),
+                  color: Color.fromARGB(255, 237, 236, 241),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(70)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 30, left: 30, bottom: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Westway',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            '15 min',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w300),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            'Healthy eating means eating a variety of \nfoods that give you the nutrients you need to \nmaintain your health, feel good, \nand have energy.',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w300),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10, left: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildIconButton('All items'),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            _buildIconButton('Veg'),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            _buildIconButton('Non-Veg'),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            _buildIconButton('Beverages'),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            _buildIconButton('Asian'),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: products.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Container(
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: index % 2 == 0
+                                      ? Colors.white
+                                      : Colors.grey.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(
+                                      15), // Add border radius
+                                ),
+
+                                // color: index % 2 == 0
+                                //     ? Colors.white
+                                //     : Colors.grey.withOpacity(0.2),
+                                child: ListTile(
+                                  contentPadding: EdgeInsets
+                                      .zero, // Remove default ListTile padding
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: Image.asset(
+                                      products[index].imagePath,
+                                      width: 60, // Adjust image width as needed
+                                      height:
+                                          60, // Adjust image height as needed
+                                    ),
+                                  ),
+                                  title: Text(products[index].name),
+                                  subtitle: Text(
+                                      '\$${products[index].price.toStringAsFixed(2)}'),
+                                  trailing: IconButton(
+                                    icon: Icon(Icons.add),
+                                    onPressed: () {
+                                      // Add functionality to add this product to the cart
+                                    },
+                                  ),
+                                  onTap: () {
+                                    // Handle tapping on product
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -71,7 +227,7 @@ class RestaurentDetalis extends StatelessWidget {
     );
   }
 
-  Widget _buildIconButton(IconData icon, String label) {
+  Widget _buildIconButton(String label) {
     return ElevatedButton(
       onLongPress: () {
         // Handle button tap
@@ -79,68 +235,21 @@ class RestaurentDetalis extends StatelessWidget {
       onPressed: () {},
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        elevation: 4,
-        primary: Color.fromARGB(255, 255, 255, 255),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0), // Adjust the spacing as needed
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: const Color.fromARGB(255, 138, 136, 136)),
             const SizedBox(height: 8), // Adjust spacing between icon and label
             Text(
               label,
-              style: const TextStyle(fontSize: 12),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildElevatedButton(
-    String label,
-    String imagePath,
-    String text1,
-  ) {
-    return ElevatedButton(
-      onPressed: () {
-        // Handle button tap
-      },
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: 4,
-        primary: const Color.fromARGB(255, 208, 214, 219),
-      ),
-      child: Container(
-        width: 130,
-        height: 200,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
-                imagePath,
-                height: 120,
-                width: 130,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 2.0),
-              child: Text(
-                text1,
-                style: const TextStyle(fontSize: 22, color: Colors.black),
-              ),
+              style: const TextStyle(
+                  fontSize: 18, color: Color.fromARGB(255, 95, 93, 93)),
             ),
           ],
         ),
