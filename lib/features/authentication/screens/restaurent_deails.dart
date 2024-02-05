@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodyapp/features/authentication/screens/restaurent_menu.dart';
+import 'package:get/get.dart';
 
 class Product {
   final String name;
@@ -134,7 +136,7 @@ class RestaurentDetails extends StatelessWidget {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 10, left: 10),
+                        padding: const EdgeInsets.only(right: 30, left: 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -165,7 +167,7 @@ class RestaurentDetails extends StatelessWidget {
                     SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Padding(
-                        padding: const EdgeInsets.all(2.0),
+                        padding: const EdgeInsets.only(right: 30, left: 30),
                         child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: products.length,
@@ -178,31 +180,32 @@ class RestaurentDetails extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: index % 2 == 0
                                       ? Colors.white
-                                      : Colors.grey.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(
-                                      15), // Add border radius
+                                      : Color.fromARGB(255, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-
-                                // color: index % 2 == 0
-                                //     ? Colors.white
-                                //     : Colors.grey.withOpacity(0.2),
                                 child: ListTile(
-                                  contentPadding: EdgeInsets
-                                      .zero, // Remove default ListTile padding
-                                  leading: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.asset(
-                                      products[index].imagePath,
-                                      width: 60, // Adjust image width as needed
-                                      height:
-                                          60, // Adjust image height as needed
+                                  leading: SizedBox(
+                                    width: 100, // Adjust image width as needed
+                                    // height:
+                                    //     100
+                                    //     , // Adjust image height as needed
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(0),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          products[index].imagePath,
+                                          fit: BoxFit
+                                              .cover, // Adjust the fit as needed
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   title: Text(products[index].name),
                                   subtitle: Text(
                                       '\$${products[index].price.toStringAsFixed(2)}'),
                                   trailing: IconButton(
-                                    icon: Icon(Icons.add),
+                                    icon: const Icon(Icons.add),
                                     onPressed: () {
                                       // Add functionality to add this product to the cart
                                     },
@@ -214,6 +217,30 @@ class RestaurentDetails extends StatelessWidget {
                               ),
                             );
                           },
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RestaurentMenu()),
+                          );
+
+                          // Add functionality to see more
+                        },
+                        child: const Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'See our menu',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromARGB(255, 241, 45, 38),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -235,7 +262,7 @@ class RestaurentDetails extends StatelessWidget {
       onPressed: () {},
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
