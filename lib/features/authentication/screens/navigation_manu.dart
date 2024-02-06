@@ -53,6 +53,7 @@ class NavigationController extends GetxController {
     const HomeScreen(),
     RestaurentDetails(),
     RestaurentMenu(),
+
     //const Details(),
   ];
 }
