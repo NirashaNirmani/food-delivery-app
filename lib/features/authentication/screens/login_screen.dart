@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:foodyapp/features/authentication/screens/home_screen.dart';
 import 'package:foodyapp/features/authentication/screens/navigation_manu.dart';
+import 'package:foodyapp/features/authentication/screens/signUp.dart';
 import 'package:foodyapp/features/authentication/validation/validation.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -259,7 +260,13 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 Text("Don’t have an account?"),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignUpScreen()),
+                                    );
+                                  },
                                   child: Text("Register"),
                                 ),
                               ],

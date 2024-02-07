@@ -31,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 context,
                 const Color.fromARGB(255, 255, 210, 0),
                 const Color.fromARGB(255, 255, 255, 255),
-                "assets/images/onboarding_images/popcorn.png",
+                "assets/images/onboarding_images/popcorn 1.png",
                 "Choose A Tasty Dish",
                 "Order anything you want from your Favorite restaurant.",
               ),
@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 context,
                 const Color.fromARGB(255, 255, 210, 0),
                 Colors.white,
-                "assets/images/onboarding_images/payment.png",
+                "assets/images/onboarding_images/money 1.png",
                 "Easy Payment",
                 "Payment made easy through debit card, credit card & more ways to pay for your food",
               ),
@@ -47,7 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 context,
                 const Color.fromARGB(255, 255, 210, 0),
                 Colors.white,
-                "assets/images/onboarding_images/taste.png",
+                "assets/images/onboarding_images/restaurant 1.png",
                 "Enjoy the Taste!",
                 "Healthy eating means eating a variety of foods that give you the nutrients you need to maintain your health.",
               ),
@@ -68,8 +68,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       curve: Curves.ease,
                     );
                   } else {
-                    // Navigate to the next screen or perform the necessary action
-                    // when the user finishes the onboarding.
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) => LoginScreen(),
@@ -78,8 +76,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(
-                      255, 255, 255, 255), // Choose your preferred button color
+                  primary: Color.fromARGB(255, 255, 255, 255),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

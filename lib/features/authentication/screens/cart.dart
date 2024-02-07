@@ -14,11 +14,27 @@ class _CartScreenState extends State<CartScreen> {
     CartItem('Burger with some', '\$20.00', 'assets/images/cart/3 image.png'),
     CartItem('Burger with some', '\$25.00', 'assets/images/cart/1 image.png'),
   ];
+  double itemTotal = 0;
+  double discount = 0; // Add your discount logic here
+  double tax = 0; // Add your tax logic here
+  double total = 0;
 
   void removeItem(int index) {
     setState(() {
       cartItems.removeAt(index);
+      updateCart();
     });
+  }
+
+  void updateCart() {
+    itemTotal = 0;
+    cartItems.forEach((item) {
+      itemTotal += double.parse(
+          item.price.substring(1)); // Assuming price format is '$xx.xx'
+    });
+
+    // Recalculate total based on the updated itemTotal, discount, and tax
+    total = itemTotal - discount + tax;
   }
 
   @override
@@ -153,66 +169,46 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 padding: const EdgeInsets.all(50),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildCartItem2('Item Total:', '\$100.00'),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _buildCartItem2('Discount: -\$10.00', '\$10.00'),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _buildCartItem2('Tax: ', '\$2.00'),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _buildCartItem2('Total:', '\$95.00'),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Add your onPressed logic here
-                      },
-                      child: Text(
-                        "Continue",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildCartItem2('Item Total:', '\$100.00'),
+                      SizedBox(
+                        height: 20,
                       ),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size(500, 70),
-                        primary: const Color.fromARGB(
-                            255, 236, 236, 236), // Background color
-                        onPrimary: Colors.white, // Text color
-                        padding: EdgeInsets.symmetric(
-                            vertical: 14, horizontal: 32), // Button padding
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(20), // Button border radius
+                      _buildCartItem2('Discount: -\$10.00', '\$10.00'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _buildCartItem2('Tax: ', '\$2.00'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _buildCartItem2('Total:', '\$95.00'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Add your onPressed logic here
+                        },
+                        child: Text(
+                          "Continue",
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(500, 70),
+                          primary: const Color.fromARGB(
+                              255, 236, 236, 236), // Background color
+                          onPrimary: Colors.white, // Text color
+                          padding: EdgeInsets.symmetric(
+                              vertical: 14, horizontal: 32), // Button padding
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                20), // Button border radius
+                          ),
                         ),
                       ),
-                    ),
-
-                    // ElevatedButton(
-                    //   onPressed: () {},
-                    //   child: Text(
-                    //     "Hi",
-                    //     style: TextStyle(color: Colors.black),
-                    //   ),
-                    //   style: ElevatedButton.styleFrom(
-                    //     primary: const Color.fromARGB(
-                    //         255, 250, 250, 249), // Background color
-                    //     onPrimary: Colors.white, // Text color
-                    //     padding: EdgeInsets.symmetric(
-                    //         vertical: 10, horizontal: 150), // Button padding
-                    //     shape: RoundedRectangleBorder(
-                    //       borderRadius:
-                    //           BorderRadius.circular(20), // Button border radius
-                    //     ),
-                    //   ),
-                    // )
-                  ],
-                ),
+                    ]),
 
                 // child: const Column(
 
