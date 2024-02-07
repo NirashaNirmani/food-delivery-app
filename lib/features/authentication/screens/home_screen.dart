@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -263,8 +264,8 @@ class HomeScreen extends StatelessWidget {
         primary: const Color.fromARGB(255, 208, 214, 219),
       ),
       child: Container(
-        width: 130,
-        height: 200,
+        width: 150,
+        height: 250,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

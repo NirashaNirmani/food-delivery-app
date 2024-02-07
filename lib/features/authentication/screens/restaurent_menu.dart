@@ -10,6 +10,8 @@ class Product {
 }
 
 class RestaurentMenu extends StatefulWidget {
+  const RestaurentMenu({super.key});
+
   @override
   _RestaurentMenuState createState() => _RestaurentMenuState();
 }
@@ -195,19 +197,14 @@ class _RestaurentMenuState extends State<RestaurentMenu> {
                                       _isTappedList[index] =
                                           !_isTappedList[index];
                                       if (_isTappedList[index]) {
-                                        // If the item is added to the cart, update the bottom navigation bar details
-                                        // You may need to adjust the logic based on your requirements
-                                        // For example, you can increment the number of items in the cart and update the total price
                                       } else {
                                         // If the item is removed from the cart, update the bottom navigation bar details accordingly
                                       }
                                     });
-                                    // Add functionality to add this product to the cart
+                                    // add this product to the cart
                                   },
                                 ),
-                                onTap: () {
-                                  // Handle tapping on product
-                                },
+                                onTap: () {},
                               ),
                             ),
                           );
@@ -228,7 +225,7 @@ class _RestaurentMenuState extends State<RestaurentMenu> {
           padding: const EdgeInsets.all(5.0),
           child: GestureDetector(
             onTap: () {
-              // Add functionality for the bottom button (e.g., navigate to cart screen)
+              // Add functionality for the bottom button
             },
             child: Container(
               decoration: const BoxDecoration(
@@ -275,8 +272,8 @@ class _RestaurentMenuState extends State<RestaurentMenu> {
                                           .cover, // Adjust the fit of the image as needed
                                     ),
                                   ),
-                                  Center(
-                                    child: const Text(
+                                  const Center(
+                                    child: Text(
                                       'Sucessfully',
                                       style: TextStyle(
                                           fontSize: 20,
@@ -284,8 +281,8 @@ class _RestaurentMenuState extends State<RestaurentMenu> {
                                               Color.fromARGB(255, 16, 167, 24)),
                                     ),
                                   ),
-                                  Center(
-                                    child: const Text(
+                                  const Center(
+                                    child: Text(
                                       'added to cart',
                                       style: TextStyle(
                                           fontSize: 20,
@@ -315,8 +312,7 @@ class _RestaurentMenuState extends State<RestaurentMenu> {
                                           ),
                                           child: TextButton(
                                             onPressed: () {
-                                              Navigator.of(context)
-                                                  .pop(); // Close the dialog
+                                              Navigator.of(context).pop();
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -346,20 +342,18 @@ class _RestaurentMenuState extends State<RestaurentMenu> {
                           );
                         },
                       );
-
-                      // Show the popup message container when "View Cart" is pressed
                     },
                     child: const Text('View Cart',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20)), // Show the option to view the cart
-                  ), // Show the option to view the cart
+                  ),
                   Text('Price: \$${calculateTotalPrice()}',
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20)), // Show the total price
                 ],
-              ), // Adjust padding as needed
+              ),
             ),
           ),
         ),

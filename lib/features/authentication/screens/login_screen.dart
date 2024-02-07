@@ -1,10 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:foodyapp/features/authentication/screens/home_screen.dart';
 import 'package:foodyapp/features/authentication/screens/navigation_manu.dart';
+import 'package:foodyapp/features/authentication/validation/validation.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key});
+
+  Future<FirebaseApp> _initializefirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    return firebaseApp;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -161,23 +169,25 @@ class LoginScreen extends StatelessWidget {
                             const Text(
                               "Email",
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            TextField(
+                            TextFormField(
+                              validator: (value) =>
+                                  Tvalidator.validateEmail(value!),
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 labelText: 'Email',
                                 fillColor:
                                     const Color.fromARGB(255, 255, 255, 255),
                                 filled: true,
-                                //border: InputBorder.none, // Remove border line
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      15), // Set border radius here
-                                  borderSide:
-                                      BorderSide.none, // Remove the border line
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide.none,
                                 ),
                               ),
                             ),
@@ -185,12 +195,16 @@ class LoginScreen extends StatelessWidget {
                             const Text(
                               "Password",
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            TextField(
+                            TextFormField(
+                              validator: (value) =>
+                                  Tvalidator.validatePassword(value!),
                               obscureText: true,
                               decoration: InputDecoration(
                                 fillColor:
@@ -199,8 +213,14 @@ class LoginScreen extends StatelessWidget {
                                 labelText: 'Password',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
-                                  borderSide:
-                                      BorderSide.none, // Remove the border line
+                                  borderSide: BorderSide.none,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(Icons.visibility),
+                                  onPressed: () {
+                                    // Toggle password visibility
+                                    // TODO: Implement visibility toggle logic
+                                  },
                                 ),
                               ),
                             ),
@@ -214,18 +234,20 @@ class LoginScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => NavigationMenu()),
+                                    builder: (context) => NavigationMenu(),
+                                  ),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
                                 backgroundColor:
                                     Color.fromARGB(255, 255, 210, 0),
-
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 25,
-                                    horizontal: 50), // Set height and width
+                                  vertical: 25,
+                                  horizontal: 50,
+                                ),
                               ),
                               child: const Text('Login'),
                             ),
@@ -237,9 +259,11 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 Text("Don’t have an account?"),
                                 TextButton(
-                                    onPressed: () {}, child: Text("Register"))
+                                  onPressed: () {},
+                                  child: Text("Register"),
+                                ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
