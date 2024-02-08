@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodyapp/features/authentication/screens/home_screen.dart';
+import 'package:foodyapp/features/authentication/screens/profile_screen.dart';
 import 'package:foodyapp/features/authentication/screens/restaurent_deails.dart';
 import 'package:foodyapp/features/authentication/screens/restaurent_menu.dart';
+//import 'package:foodyapp/features/authentication/screens/signUp.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -16,7 +18,7 @@ class NavigationMenu extends StatelessWidget {
         bottomNavigationBar: Obx(() => NavigationBar(
                 height: 60,
                 elevation: 0,
-                backgroundColor: Color.fromARGB(244, 255, 255, 255),
+                backgroundColor: const Color.fromARGB(244, 255, 255, 255),
                 indicatorColor: Colors.white.withOpacity(0),
                 selectedIndex: controller.selectedIndex.value,
                 onDestinationSelected: (index) =>
@@ -52,7 +54,10 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     RestaurentDetails(),
-    RestaurentMenu(),
+    const RestaurentMenu(),
+    const ProfileScreen(
+      userId: '',
+    )
 
     //const Details(),
   ];

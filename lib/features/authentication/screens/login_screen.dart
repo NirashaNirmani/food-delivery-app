@@ -1,22 +1,84 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:foodyapp/features/authentication/screens/home_screen.dart';
 import 'package:foodyapp/features/authentication/screens/navigation_manu.dart';
+import 'package:foodyapp/features/authentication/screens/profile_screen.dart';
 import 'package:foodyapp/features/authentication/screens/signUp.dart';
 import 'package:foodyapp/features/authentication/validation/validation.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key});
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  //const LoginScreen({Key? key});
 
-  Future<FirebaseApp> _initializefirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-    return firebaseApp;
+  void _showErrorMessage(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSuccessMessage(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Success'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<User?> loginUsingEmailPassword({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential.user;
+    } catch (e) {
+      print('Error during login: $e');
+      // Handle login error
+      return null;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    //create textfield controllers
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -125,7 +187,20 @@ class LoginScreen extends StatelessWidget {
                             width: 8,
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              User? user = await loginUsingEmailPassword(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                                context: context,
+                              );
+                              if (user != null) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NavigationMenu()),
+                                );
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               shape: const RoundedRectangleBorder(
                                 borderRadius:
@@ -178,6 +253,7 @@ class LoginScreen extends StatelessWidget {
                               height: 10,
                             ),
                             TextFormField(
+                              controller: _emailController,
                               validator: (value) =>
                                   Tvalidator.validateEmail(value!),
                               keyboardType: TextInputType.emailAddress,
@@ -204,6 +280,7 @@ class LoginScreen extends StatelessWidget {
                               height: 10,
                             ),
                             TextFormField(
+                              controller: _passwordController,
                               validator: (value) =>
                                   Tvalidator.validatePassword(value!),
                               obscureText: true,
@@ -230,14 +307,19 @@ class LoginScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 20),
                             ElevatedButton(
-                              onPressed: () {
-                                // Login logic here
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => NavigationMenu(),
-                                  ),
+                              onPressed: () async {
+                                User? user = await loginUsingEmailPassword(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                  context: context,
                                 );
+                                if (user != null) {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => NavigationMenu()),
+                                  );
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
